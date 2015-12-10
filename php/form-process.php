@@ -1,5 +1,5 @@
 <?php
-
+require("class.phpmailer.php");
 $errorMSG = "";
 
 // NAME
@@ -24,32 +24,45 @@ if (empty($_POST["message"])) {
 }
 
 
-$EmailTo = "emailaddress@test.com";
-$Subject = "New Message Received";
-
 // prepare email body text
 $Body = "";
 $Body .= "Name: ";
 $Body .= $name;
-$Body .= "\n";
+$Body .= "<br> \n";
 $Body .= "Email: ";
 $Body .= $email;
-$Body .= "\n";
+$Body .= "<br> \n";
 $Body .= "Message: ";
 $Body .= $message;
-$Body .= "\n";
+$Body .= "<br> \n";
 
-// send email
-$success = mail($EmailTo, $Subject, $Body, "From:".$email);
+$mail = new PHPMailer();
+$mail->IsSMTP();
+$mail->SMTPDebug = 1; 
+$mail->SMTPAuth = true;
+$mail->SMTPSecure = 'ssl'; 
+$mail->Host = "smtp.mail.com"; 
+$mail->Port = 465; 
+$mail->IsHTML(true);
+$mail->SetLanguage("tr", "phpmailer/language");
+$mail->CharSet  ="utf-8";
+$mail->Username = "mail@mail.com"; 
+$mail->Password = "password"; 
+$mail->SetFrom("mail@mail.com", "Name"); 
+$mail->AddAddress("mail@mail.com"); 
+$mail->Subject = "Subject"; 
+$mail->Body = $MsgContent ; 
 
-// redirect to success page
+$success = $mail->Send();
+
+
 if ($success && $errorMSG == ""){
    echo "success";
 }else{
     if($errorMSG == ""){
         echo "Something went wrong :(";
     } else {
-        echo $errorMSG;
+        echo $errorMSG . "<br> Mailer Error: " . $mail->ErrorInfo;
     }
 }
 
