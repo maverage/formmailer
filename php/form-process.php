@@ -25,16 +25,16 @@ if (empty($_POST["message"])) {
 
 
 // prepare email body text
-$Body = "";
-$Body .= "Name: ";
-$Body .= $name;
-$Body .= "<br> \n";
-$Body .= "Email: ";
-$Body .= $email;
-$Body .= "<br> \n";
-$Body .= "Message: ";
-$Body .= $message;
-$Body .= "<br> \n";
+$MsgContent = "";
+$MsgContent .= "Name: ";
+$MsgContent .= $name;
+$MsgContent .= "<br> \n";
+$MsgContent .= "Email: ";
+$MsgContent .= $email;
+$MsgContent .= "<br> \n";
+$MsgContent .= "Message: ";
+$MsgContent .= $message;
+$MsgContent .= "<br> \n";
 
 $mail = new PHPMailer();
 $mail->IsSMTP();
