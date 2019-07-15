@@ -18,10 +18,11 @@
         <div class="row">
             <div class="form-group col-lg-4 col-sm-6">
                 <label for="answer-to-name" class="h4">Name</label>
-                <select class="form-control" name="answer-to-email"  placeholder="Select name" required onselect="document.getElementById('answer-to-email').value = document.getElementById('answer-to-name').value.replace(/^([a-zA-Z]).*\s([a-zA-Z]+)$/,'$1.$2@campus-konzept.de');">
+                <select class="form-control" id="answer-to-name" placeholder="Select name" required="required" onchange="document.getElementById('answer-to-email').value = this.value.replace(/^([a-zA-Z]).*\s([a-zA-Z]+)$/,'$1.$2@campus-konzept.de');">
+					<option value="" disabled selected>Select name</option>
 					<option value="Max Mustermann">Max Mustermann</option>
-					<option value="Martin Mustermann">Martin Mustermann</option>
-					<option value="Manuel Mustermann">Manuel Mustermann</option>
+					<option value="Martina Musterfrau">Martina Musterfrau</option>
+					<option value="Manuel Muster">Manuel Muster</option>
 				  </select>
 				<div class="help-block with-errors"></div>
             </div>
